@@ -27,7 +27,7 @@ classifiers = [
 dependencies = [
   "pydantic",
   "distributed",
-  "numpy",
+  "numpy<2",
   "matplotlib",
   "scikit-image",
   "pandas",
@@ -62,6 +62,11 @@ cov-html = [
   "test-cov",
   "- coverage combine",
   "coverage html",
+]
+cov-xml = [
+  "test-cov",
+  "- coverage combine",
+  "coverage xml",
 ]
 cov = [
   "test-cov",
@@ -105,6 +110,7 @@ faim_ipa = ["src/faim_ipa", "*/faim-ipa/src/faim_ipa"]
 tests = ["tests", "*/faim-ipa/tests"]
 
 [tool.coverage.report]
+show_missing = true
 exclude_lines = [
   "no cov",
   "if __name__ == .__main__.:",
@@ -113,3 +119,12 @@ exclude_lines = [
 
 [tool.setuptools_scm]
 write_to = "src/faim_ipa/_version.py"
+
+[tool.typos.default]
+extend-ignore-words-re = [
+  # Hexadecimal identifiers in file names
+  "^[A-F0-9]*$",
+]
+
+[tool.typos.default.extend-words]
+ome = "ome"
